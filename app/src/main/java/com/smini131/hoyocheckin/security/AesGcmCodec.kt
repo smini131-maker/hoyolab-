@@ -1,6 +1,5 @@
 package com.smini131.hoyocheckin.security
 
-import java.security.SecureRandom
 import java.util.Base64
 import javax.crypto.Cipher
 import javax.crypto.SecretKey
@@ -12,13 +11,15 @@ data class CipherPayload(
     val ciphertextBase64: String
 )
 
-class AesGcmCodec(private val secureRandom: SecureRandom = SecureRandom()) {
+class AesGcmCodec {
     fun encrypt(plaintext: ByteArray, key: SecretKey): CipherPayload {
-        val iv = ByteArray(IV_SIZE_BYTES)
-        secureRandom.nextBytes(iv)
         val cipher = Cipher.getInstance(TRANSFORMATION)
-        cipher.init(Cipher.ENCRYPT_MODE, key, GCMParameterSpec(TAG_SIZE_BITS, iv))
+        // Android Keystore에서 randomizedEncryptionRequired=true인 키는 호출자가
+        // 지정한 IV를 거부한다. Cipher가 안전한 무작위 IV를 직접 만들게 해야 한다.
+        cipher.init(Cipher.ENCRYPT_MODE, key)
         val encrypted = cipher.doFinal(plaintext)
+        val iv = cipher.iv
+        require(iv.size == IV_SIZE_BYTES) { "잘못된 GCM IV 길이" }
         return CipherPayload(
             version = CURRENT_VERSION,
             ivBase64 = Base64.getEncoder().encodeToString(iv),

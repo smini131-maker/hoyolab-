@@ -25,4 +25,17 @@ class AesGcmCodecTest {
             AesGcmCodec().decrypt(payload, keyGenerator.generateKey())
         }
     }
+
+    @Test
+    fun `암호화할 때마다 Cipher가 서로 다른 IV를 만든다`() {
+        val keyGenerator = KeyGenerator.getInstance("AES").apply { init(256) }
+        val key = keyGenerator.generateKey()
+        val codec = AesGcmCodec()
+
+        val first = codec.encrypt("same-value".toByteArray(), key)
+        val second = codec.encrypt("same-value".toByteArray(), key)
+
+        assertNotEquals(first.ivBase64, second.ivBase64)
+        assertNotEquals(first.ciphertextBase64, second.ciphertextBase64)
+    }
 }

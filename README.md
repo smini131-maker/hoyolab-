@@ -9,11 +9,11 @@
 
 Android 8.0(API 26) 이상 기기에서 디버그 서명 APK를 설치할 수 있습니다.
 
-1. [`releases/GenshinCheckInHelper-v1.0.0-debug.apk`](releases/GenshinCheckInHelper-v1.0.0-debug.apk)를 내려받습니다.
+1. [`releases/GenshinCheckInHelper-v1.0.1-debug.apk`](releases/GenshinCheckInHelper-v1.0.1-debug.apk)를 내려받습니다.
 2. APK 직접 설치를 허용하거나 ADB로 설치합니다.
 
 ```bash
-adb install -r releases/GenshinCheckInHelper-v1.0.0-debug.apk
+adb install -r releases/GenshinCheckInHelper-v1.0.1-debug.apk
 ```
 
 3. 앱에서 **HoYoLAB 로그인**을 누르고 공식 페이지에 직접 로그인합니다.
@@ -83,7 +83,7 @@ GitHub Actions도 같은 세 단계를 실행하고 APK를 워크플로 아티�
 
 | 검사 | 결과 |
 |---|---|
-| JVM 단위 테스트 | 23/23 통과, 실패·오류·건너뜀 0 |
+| JVM 단위 테스트 | 24/24 통과, 실패·오류·건너뜀 0 |
 | Android Lint | 빌드 통과, 오류 0, 비차단 경고 78 |
 | clean 후 debug/release/androidTest 빌드 | 모두 성공 |
 | R8 + 리소스 축소 | 릴리스 후보 814,334바이트 |
@@ -95,9 +95,9 @@ GitHub Actions도 같은 세 단계를 실행하고 APK를 워크플로 아티�
 ## APK 무결성
 
 ```text
-8856867acbbb8b01739306ca4d8f62f45b4e8b1f5c7c4f851b433efb8d9d2180  GenshinCheckInHelper-v1.0.0-debug.apk
-d74e591e7c74c439947848e5d0763ebfe97c4cfcadf3f445079046fd487ac97e  GenshinCheckInHelper-v1.0.0-release-unsigned.apk
-479fde37361122aefbe709cb022eb7e0db9b76158132adbf4fb66272acd923aa  GenshinCheckInHelper-v1.0.0-androidTest.apk
+dac226bafaaffdfa882e809865275fdc04c98bbbacd99f6c1c711c93004c806a  GenshinCheckInHelper-v1.0.1-debug.apk
+a5514de7183c4d0532a734e97d9c926ac3cffef2ad1306caa38bfbf6b034d2cd  GenshinCheckInHelper-v1.0.1-release-unsigned.apk
+479fde37361122aefbe709cb022eb7e0db9b76158132adbf4fb66272acd923aa  GenshinCheckInHelper-v1.0.1-androidTest.apk
 ```
 
 다음 명령으로 확인할 수 있습니다.

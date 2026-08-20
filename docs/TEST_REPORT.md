@@ -24,10 +24,10 @@
 | `HoyolabCheckInClientTest` | 9 | 성공, 이미 완료, 인증 만료, 429, 5xx, 비JSON, 필드 누락, 위험 인증, `-5003` |
 | `WorkTimeCalculatorTest` | 6 | 오전/저녁/자정, DST gap/overlap, 시각 역행 |
 | `AttendanceRunnerTest` | 3 | 첫 성공, 같은 날 0요청, 쿠키 없음/시각 변경 |
-| `AesGcmCodecTest` | 2 | AES-GCM 왕복, 잘못된 키 실패 |
+| `AesGcmCodecTest` | 3 | AES-GCM 왕복, 잘못된 키 실패, 암호화마다 고유 IV 생성 |
 | `CookieFilterTest` | 2 | 허용 목록, 필수 쿠키 쌍 누락 |
 | `RedactingLoggerTest` | 1 | 쿠키/토큰/이메일/긴 ID 마스킹 |
-| 합계 | 23 | 실패 0, 오류 0, 건너뜀 0 |
+| 합계 | 24 | 실패 0, 오류 0, 건너뜀 0 |
 
 정상 미출석 경로는 HTTP 2회, 이미 출석한 서버 경로는 1회, 같은 서버 날짜에 성공 후 재실행은 0회가 모의 전송 계층 테스트로 확인됐다.
 
@@ -41,7 +41,7 @@
 
 ## 계측 테스트
 
-다음 Android 계측 테스트가 컴파일되어 `GenshinCheckInHelper-v1.0.0-androidTest.apk`에 포함됐다.
+다음 Android 계측 테스트가 컴파일되어 `GenshinCheckInHelper-v1.0.1-androidTest.apk`에 포함됐다.
 
 - Android Keystore 암호화 저장/복호화/삭제
 - WorkManager 테스트 초기화와 오전·저녁 고유 작업 예약
@@ -52,9 +52,11 @@
 
 | 파일 | 크기 | 서명 | 용도 |
 |---|---:|---|---|
-| `GenshinCheckInHelper-v1.0.0-debug.apk` | 4,158,690바이트 | Android 디버그 서명 | 즉시 설치/기능 검증 |
-| `GenshinCheckInHelper-v1.0.0-release-unsigned.apk` | 814,334바이트 | 없음 | R8/리소스 축소 릴리스 후보 |
-| `GenshinCheckInHelper-v1.0.0-androidTest.apk` | 367,869바이트 | 테스트 서명 | 계측 테스트 |
+| `GenshinCheckInHelper-v1.0.1-debug.apk` | 4,158,602바이트 | Android 디버그 서명 | 즉시 설치/기능 검증 |
+| `GenshinCheckInHelper-v1.0.1-release-unsigned.apk` | 814,334바이트 | 없음 | R8/리소스 축소 릴리스 후보 |
+| `GenshinCheckInHelper-v1.0.1-androidTest.apk` | 367,869바이트 | 테스트 서명 | 계측 테스트 |
+
+v1.0.1은 Android Keystore가 `randomizedEncryptionRequired=true` 키에 호출자 지정 IV를 거부하는 문제를 수정했다. 암호화 시 `Cipher`/Keystore가 무작위 GCM IV를 직접 생성하고, 생성된 IV만 암호문과 함께 저장한다.
 
 릴리스는 R8 최적화와 리소스 축소가 적용됐다. 앱 직접 의존성은 AppCompat와 WorkManager뿐이며, 별도 HTTP/JSON/분석 SDK를 추가하지 않았다. WorkManager가 내부적으로 Room/JobScheduler를 사용하지만 앱 자체 데이터베이스나 상주 서비스는 없다.
 
@@ -83,7 +85,7 @@
 ## SHA-256
 
 ```text
-479fde37361122aefbe709cb022eb7e0db9b76158132adbf4fb66272acd923aa  GenshinCheckInHelper-v1.0.0-androidTest.apk
-8856867acbbb8b01739306ca4d8f62f45b4e8b1f5c7c4f851b433efb8d9d2180  GenshinCheckInHelper-v1.0.0-debug.apk
-d74e591e7c74c439947848e5d0763ebfe97c4cfcadf3f445079046fd487ac97e  GenshinCheckInHelper-v1.0.0-release-unsigned.apk
+479fde37361122aefbe709cb022eb7e0db9b76158132adbf4fb66272acd923aa  GenshinCheckInHelper-v1.0.1-androidTest.apk
+dac226bafaaffdfa882e809865275fdc04c98bbbacd99f6c1c711c93004c806a  GenshinCheckInHelper-v1.0.1-debug.apk
+a5514de7183c4d0532a734e97d9c926ac3cffef2ad1306caa38bfbf6b034d2cd  GenshinCheckInHelper-v1.0.1-release-unsigned.apk
 ```
