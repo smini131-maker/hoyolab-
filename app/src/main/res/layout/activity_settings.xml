@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="자동 출석 설정"
+            android:textColor="@color/text_primary"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="1차 실행 시간"
+            android:textColor="@color/text_primary"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+        <TimePicker
+            android:id="@+id/morningPicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="2차 실행 시간"
+            android:textColor="@color/text_primary"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+        <TimePicker
+            android:id="@+id/eveningPicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/successNotificationSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="성공 알림"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/failureNotificationSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="실패 및 재로그인 알림"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/wifiOnlySwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Wi-Fi에서만 실행"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <Button android:id="@+id/saveSettingsButton" style="@style/PrimaryButton" android:layout_marginTop="18dp" android:text="저장하고 다시 예약" />
+        <Button android:id="@+id/cancelSettingsButton" style="@style/SecondaryButton" android:layout_marginTop="8dp" android:text="취소" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_card"
+            android:text="설정 시각은 정확 알람이 아니라 실행 목표 시각입니다. Android Doze 및 제조사 절전 정책으로 늦어질 수 있습니다. 배터리 최적화 제외 권한은 기본으로 요구하지 않습니다. 인증 쿠키는 Android Keystore의 AES-256-GCM으로 기기 안에서만 암호화됩니다."
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp" />
+    </LinearLayout>
+</ScrollView>

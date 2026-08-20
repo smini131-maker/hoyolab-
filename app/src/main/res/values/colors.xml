@@ -1,0 +1,12 @@
+<resources>
+    <color name="navy">#172033</color>
+    <color name="navy_soft">#23304A</color>
+    <color name="mint">#58D6B1</color>
+    <color name="mint_dark">#247E69</color>
+    <color name="cream">#F7F4EC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_primary">#172033</color>
+    <color name="text_secondary">#596273</color>
+    <color name="warning">#9A5A00</color>
+    <color name="danger">#A42C3A</color>
+</resources>

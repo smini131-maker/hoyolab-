@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingTop="24dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="원신 출석 도우미"
+            android:textColor="@color/text_primary"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/unofficial_notice"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="현재 상태"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView android:id="@+id/loginStatus" style="@style/StatusLine" android:text="로그인 상태: 확인 중" />
+            <TextView android:id="@+id/todayStatus" style="@style/StatusLine" android:text="오늘 출석: 확인 전" />
+            <TextView android:id="@+id/lastAttempt" style="@style/StatusLine" android:text="마지막 시도: 없음" />
+            <TextView android:id="@+id/lastSuccess" style="@style/StatusLine" android:text="마지막 성공: 없음" />
+            <TextView android:id="@+id/lastResult" style="@style/StatusLine" android:text="실행 결과: 없음" />
+            <TextView android:id="@+id/nextMorning" style="@style/StatusLine" android:text="다음 1차 실행: 미예약" />
+            <TextView android:id="@+id/nextEvening" style="@style/StatusLine" android:text="다음 2차 실행: 미예약" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/autoSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:minHeight="48dp"
+                android:text="자동 출석"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button android:id="@+id/loginButton" style="@style/PrimaryButton" android:layout_marginTop="18dp" android:text="HoYoLAB 로그인" />
+        <Button android:id="@+id/checkNowButton" style="@style/PrimaryButton" android:layout_marginTop="10dp" android:text="지금 출석 확인" />
+        <Button android:id="@+id/settingsButton" style="@style/SecondaryButton" android:layout_marginTop="10dp" android:text="실행 시간 및 알림 설정" />
+        <Button android:id="@+id/refreshLoginButton" style="@style/SecondaryButton" android:layout_marginTop="10dp" android:text="로그인 갱신" />
+        <Button android:id="@+id/diagnosticsButton" style="@style/SecondaryButton" android:layout_marginTop="10dp" android:text="진단 정보 보기" />
+        <Button android:id="@+id/logoutButton" style="@style/SecondaryButton" android:layout_marginTop="10dp" android:text="로그아웃 및 인증정보 삭제" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_card"
+            android:text="앱은 상주하지 않습니다. Android가 예약 시각 전후에 짧게 실행하며, 절전 정책·강제 종료·네트워크 상태에 따라 지연될 수 있습니다. CAPTCHA나 위험 인증이 나타나면 우회하지 않고 자동 작업을 중단합니다."
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp" />
+    </LinearLayout>
+</ScrollView>

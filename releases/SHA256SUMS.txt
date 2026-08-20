@@ -1,0 +1,3 @@
+479fde37361122aefbe709cb022eb7e0db9b76158132adbf4fb66272acd923aa  GenshinCheckInHelper-v1.0.0-androidTest.apk
+8856867acbbb8b01739306ca4d8f62f45b4e8b1f5c7c4f851b433efb8d9d2180  GenshinCheckInHelper-v1.0.0-debug.apk
+d74e591e7c74c439947848e5d0763ebfe97c4cfcadf3f445079046fd487ac97e  GenshinCheckInHelper-v1.0.0-release-unsigned.apk
