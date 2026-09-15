@@ -3,7 +3,7 @@ name: Build Galaxy Store Auto Attendance APK
 on:
   push:
     branches:
-      - build/galaxy-store-auto-attendance-20260915
+      - build/galaxy-store-auto-attendance-v1.1.0
   workflow_dispatch:
 
 permissions:
@@ -47,7 +47,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: GalaxyStoreAutoAttendance-debug
+          name: GalaxyStoreAutoAttendance-v1.1.0-debug
           path: GalaxyStoreAutoAttendance/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 7
@@ -55,7 +55,7 @@ jobs:
       - name: Upload complete Android Studio project
         uses: actions/upload-artifact@v4
         with:
-          name: GalaxyStoreAutoAttendance-project
+          name: GalaxyStoreAutoAttendance-v1.1.0-project
           path: |
             GalaxyStoreAutoAttendance/**
             !GalaxyStoreAutoAttendance/.gradle/**
