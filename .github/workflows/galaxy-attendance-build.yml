@@ -37,13 +37,28 @@ jobs:
         with:
           gradle-version: '8.13'
 
-      - name: Build debug APK
-        run: gradle -p GalaxyStoreAutoAttendance :app:assembleDebug --stacktrace
+      - name: Generate standard Gradle Wrapper
+        run: gradle -p GalaxyStoreAutoAttendance wrapper --gradle-version 8.13
+
+      - name: Build debug APK through wrapper
+        working-directory: GalaxyStoreAutoAttendance
+        run: ./gradlew :app:assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: GalaxyStoreAutoAttendance-debug
           path: GalaxyStoreAutoAttendance/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload complete Android Studio project
+        uses: actions/upload-artifact@v4
+        with:
+          name: GalaxyStoreAutoAttendance-project
+          path: |
+            GalaxyStoreAutoAttendance/**
+            !GalaxyStoreAutoAttendance/.gradle/**
+            !GalaxyStoreAutoAttendance/app/build/**
           if-no-files-found: error
           retention-days: 7
